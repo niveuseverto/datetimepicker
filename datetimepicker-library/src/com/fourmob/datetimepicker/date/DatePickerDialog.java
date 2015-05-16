@@ -89,6 +89,7 @@ public class DatePickerDialog extends DialogFragment implements View.OnClickList
     private boolean mCloseOnSingleTapDay;
     private SimpleMonthAdapter.CalendarDay minDate;
     private boolean viewInitialized = false;
+    private SimpleMonthAdapter.CalendarDay maxDate;
 
     private void adjustDayInMonthIfNeeded(int month, int year) {
         int day = mCalendar.get(Calendar.DAY_OF_MONTH);
@@ -109,15 +110,29 @@ public class DatePickerDialog extends DialogFragment implements View.OnClickList
     public static DatePickerDialog newInstance(OnDateSetListener onDateSetListener, int year, int month, int day, boolean vibrate) {
         DatePickerDialog datePickerDialog = new DatePickerDialog();
         datePickerDialog.initialize(onDateSetListener, year, month, day, vibrate);
-        // datePickerDialog.setMinDate(new SimpleMonthAdapter.CalendarDay(2015,4,25));
         return datePickerDialog;
     }
 
+    /**
+     * Set the minimum allowed date
+     * Note : the month index starts from 0, rest all from 1
+     */
     public void setMinDate(SimpleMonthAdapter.CalendarDay minDate) {
         if (mDayPickerView != null) {
             mDayPickerView.setMinDate(minDate);
         }
             this.minDate = minDate;
+    }
+
+    /**
+     * Set the maximum allowed date
+     * Note : the month index starts from 0, rest all from 1
+     */
+    public void setMaxDate(SimpleMonthAdapter.CalendarDay maxDate) {
+        if (mDayPickerView != null) {
+            mDayPickerView.setMaxDate(maxDate);
+        }
+        this.maxDate = maxDate;
     }
 
 
@@ -286,6 +301,7 @@ public class DatePickerDialog extends DialogFragment implements View.OnClickList
         Activity activity = getActivity();
         mDayPickerView = new DayPickerView(activity, this);
         if (this.minDate != null) mDayPickerView.setMinDate(this.minDate);
+        if (this.maxDate != null) mDayPickerView.setMaxDate(this.maxDate);
         mYearPickerView = new YearPickerView(activity, this);
 
         Resources resources = getResources();

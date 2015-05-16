@@ -25,6 +25,7 @@ public class SimpleMonthAdapter extends BaseAdapter implements SimpleMonthView.O
 
     private CalendarDay mSelectedDay;
     private CalendarDay mMinDate;
+    private CalendarDay mMaxDate = null;
 
     public SimpleMonthAdapter(Context context, DatePickerController datePickerController) {
         mContext = context;
@@ -83,6 +84,9 @@ public class SimpleMonthAdapter extends BaseAdapter implements SimpleMonthView.O
         drawingParams.put(SimpleMonthView.VIEW_PARAMS_MIN_DATE_DAY, mMinDate.day);
         drawingParams.put(SimpleMonthView.VIEW_PARAMS_MIN_DATE_MONTH, mMinDate.month);
         drawingParams.put(SimpleMonthView.VIEW_PARAMS_MIN_DATE_YEAR, mMinDate.year);
+        drawingParams.put(SimpleMonthView.VIEW_PARAMS_MAX_DATE_DAY, mMaxDate.day);
+        drawingParams.put(SimpleMonthView.VIEW_PARAMS_MAX_DATE_MONTH, mMaxDate.month);
+        drawingParams.put(SimpleMonthView.VIEW_PARAMS_MAX_DATE_YEAR, mMaxDate.year);
         v.setMonthParams(drawingParams);
         v.invalidate();
 
@@ -95,10 +99,11 @@ public class SimpleMonthAdapter extends BaseAdapter implements SimpleMonthView.O
 
     public void onDayClick(SimpleMonthView simpleMonthView, CalendarDay calendarDay) {
         if (calendarDay != null) {
-            if (this.mMinDate == null || calendarDay.isAfter(this.mMinDate) || calendarDay.equals(this.mMinDate)) {
+            if ((this.mMinDate == null || calendarDay.isAfter(this.mMinDate) || calendarDay.equals(this.mMinDate)) &&
+                    (this.mMaxDate == null || calendarDay.isBefore(this.mMaxDate) || calendarDay.equals(this.mMaxDate))) {
                 onDayTapped(calendarDay);
             } else {
-                Log.i(TAG, "ignoring push since day is after mindate or mindate is not set");
+                Log.i(TAG, "ignoring push since day is after minDate or before maxDate");
             }
         }
     }
@@ -121,6 +126,11 @@ public class SimpleMonthAdapter extends BaseAdapter implements SimpleMonthView.O
      */
     public void setMinDate(CalendarDay mMinDate) {
         this.mMinDate = mMinDate;
+        notifyDataSetChanged();
+    }
+
+    public void setMaxDate(CalendarDay mMaxDate) {
+        this.mMaxDate = mMaxDate;
         notifyDataSetChanged();
     }
 
@@ -188,7 +198,9 @@ public class SimpleMonthAdapter extends BaseAdapter implements SimpleMonthView.O
             return convertToDate(this).after(convertToDate(day));
         }
 
-        ;
+        public boolean isBefore(CalendarDay day) {
+            return convertToDate(this).before(convertToDate(day));
+        }
 
         public Date convertToDate(CalendarDay day) {
             java.util.Date utilDate = null;

@@ -181,6 +181,10 @@ public class DayPickerView extends ListView implements AbsListView.OnScrollListe
         mAdapter.setMinDate(day);
     }
 
+    public void setMaxDate(SimpleMonthAdapter.CalendarDay day) {
+        mAdapter.setMaxDate(day);
+    }
+
 	protected void setUpAdapter(SimpleMonthAdapter.CalendarDay mMaxDate) {
 		if (mAdapter == null) {
 			mAdapter = new SimpleMonthAdapter(getContext(), mController);

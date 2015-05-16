@@ -32,10 +32,13 @@ public class SimpleMonthView extends View {
     public static final String VIEW_PARAMS_FOCUS_MONTH = "focus_month";
     public static final String VIEW_PARAMS_SHOW_WK_NUM = "show_wk_num";
     public static final String VIEW_PARAMS_MIN_DATE_DAY = "minDateDay";
+    public static final String VIEW_PARAMS_MAX_DATE_DAY = "maxDateDay";
 
     private static final int SELECTED_CIRCLE_ALPHA = 60;
     public static final String VIEW_PARAMS_MIN_DATE_MONTH = "minDateMonth";
     public static final String VIEW_PARAMS_MIN_DATE_YEAR ="minDateYear" ;
+    public static final String VIEW_PARAMS_MAX_DATE_MONTH = "maxDateMonth";
+    public static final String VIEW_PARAMS_MAX_DATE_YEAR ="maxDateYear" ;
     protected static int DEFAULT_HEIGHT = 32;
     protected static final int DEFAULT_NUM_ROWS = 6;
 	protected static int DAY_SELECTED_CIRCLE_SIZE;
@@ -92,6 +95,7 @@ public class SimpleMonthView extends View {
 
     private OnDayClickListener mOnDayClickListener;
     private SimpleMonthAdapter.CalendarDay mMinDate;
+    private SimpleMonthAdapter.CalendarDay mMaxDate;
 
     public SimpleMonthView(Context context) {
 		super(context);
@@ -178,6 +182,9 @@ public class SimpleMonthView extends View {
         if(mMonth <= mMinDate.month && mYear <= mMinDate.year){
             hasDisabledDays = true;
         }
+        if (mMonth >= mMaxDate.month && mYear >= mMaxDate.year) {
+            hasDisabledDays = true;
+        }
 		while (day <= mNumCells) {
 			int x = paddingDay * (1 + dayOffset * 2) + mPadding;
 			if (mSelectedDay == day) {
@@ -188,7 +195,8 @@ public class SimpleMonthView extends View {
             } else {
                 mMonthNumPaint.setColor(mDayTextColor);
                 if(hasDisabledDays){
-                    if(mMinDate.isAfter(new SimpleMonthAdapter.CalendarDay(mYear,mMonth,day))){
+                    if(mMinDate.isAfter(new SimpleMonthAdapter.CalendarDay(mYear,mMonth,day)) ||
+                            mMaxDate.isBefore(new SimpleMonthAdapter.CalendarDay(mYear,mMonth,day))) {
                         mMonthNumPaint.setColor(mDayDisabledTextColor);
                     }
                 }
@@ -296,6 +304,10 @@ public class SimpleMonthView extends View {
 
         if (params.containsKey(VIEW_PARAMS_MIN_DATE_DAY) && params.containsKey(VIEW_PARAMS_MIN_DATE_MONTH) && params.containsKey(VIEW_PARAMS_MIN_DATE_YEAR)) {
             this.mMinDate = new SimpleMonthAdapter.CalendarDay(params.get(VIEW_PARAMS_MIN_DATE_YEAR), params.get(VIEW_PARAMS_MIN_DATE_MONTH), params.get(VIEW_PARAMS_MIN_DATE_DAY));
+        }
+
+        if (params.containsKey(VIEW_PARAMS_MAX_DATE_DAY) && params.containsKey(VIEW_PARAMS_MAX_DATE_MONTH) && params.containsKey(VIEW_PARAMS_MAX_DATE_YEAR)) {
+            this.mMaxDate = new SimpleMonthAdapter.CalendarDay(params.get(VIEW_PARAMS_MAX_DATE_YEAR), params.get(VIEW_PARAMS_MAX_DATE_MONTH), params.get(VIEW_PARAMS_MAX_DATE_DAY));
         }
 
         if (params.containsKey(VIEW_PARAMS_HEIGHT)) {
