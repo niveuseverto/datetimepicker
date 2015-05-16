@@ -179,10 +179,10 @@ public class SimpleMonthView extends View {
 		int dayOffset = findDayOffset();
 		int day = 1;
         boolean hasDisabledDays = false;
-        if(mMonth <= mMinDate.month && mYear <= mMinDate.year){
+        if(mMinDate != null && mMonth <= mMinDate.month && mYear <= mMinDate.year){
             hasDisabledDays = true;
         }
-        if (mMonth >= mMaxDate.month && mYear >= mMaxDate.year) {
+        if (mMaxDate != null && mMonth >= mMaxDate.month && mYear >= mMaxDate.year) {
             hasDisabledDays = true;
         }
 		while (day <= mNumCells) {
@@ -195,8 +195,9 @@ public class SimpleMonthView extends View {
             } else {
                 mMonthNumPaint.setColor(mDayTextColor);
                 if(hasDisabledDays){
-                    if(mMinDate.isAfter(new SimpleMonthAdapter.CalendarDay(mYear,mMonth,day)) ||
-                            mMaxDate.isBefore(new SimpleMonthAdapter.CalendarDay(mYear,mMonth,day))) {
+                    if(mMinDate != null && mMinDate.isAfter(new SimpleMonthAdapter.CalendarDay(mYear,mMonth,day))) {
+                        mMonthNumPaint.setColor(mDayDisabledTextColor);
+                    } else if (mMaxDate != null && mMaxDate.isBefore(new SimpleMonthAdapter.CalendarDay(mYear,mMonth,day))) {
                         mMonthNumPaint.setColor(mDayDisabledTextColor);
                     }
                 }
