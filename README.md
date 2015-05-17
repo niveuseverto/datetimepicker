@@ -23,8 +23,6 @@ This library reproduces as much as possible the original picker contained in the
 
 ![Example Image][1]
 
-Try out the sample APK [here][2]
-
 Or browse the [source code of the sample application][3] for a complete example of use.
 
 ## Including in your project
@@ -37,7 +35,33 @@ Just add the following statement in your build.gradle
 
 ## Usage
 
-Using the library is simple, just look at the source code of the provided sample [here][4]
+1. **Basic**
+
+  Date Picker
+  ```java
+  DatePickerDialog datePickerDialog = DatePickerDialog.newInstance(new OnDateSetListener() {...}, year, month, day);
+  ```
+
+  Time Picker
+  ```java
+  TimePickerDialog timePickerDialog = TimePickerDialog.newInstance(new TimePickerDialog.OnTimeSetListener() {...}, hourOfDay, minute, is24HourMode);
+  ```
+  For more info look at the source code of the provided sample [here][4]
+
+2. **Change Dialog Primary Color**
+
+  Override the following colors in your project
+
+  ```xml
+  <color name="datepicker_primary">#ff4CAF50</color>
+  <color name="datepicker_primary_dark">#ff388E3C</color>
+  ```
+
+3. **Set Min/Max Date**
+  ```java
+  datePickerDialog.setMinDate(new SimpleMonthAdapter.CalendarDay(2015, 4, 17));
+  datePickerDialog.setMaxDate(new SimpleMonthAdapter.CalendarDay(2015, 4, 20));
+  ```
 
 ## Acknowledgements
 
@@ -59,8 +83,7 @@ Using the library is simple, just look at the source code of the provided sample
     See the License for the specific language governing permissions and
     limitations under the License.
 
- [1]: https://raw.github.com/biboune/datetimepicker/master/graphics/img1.png
- [2]: https://raw.github.com/biboune/datetimepicker/master/datetimepicker-sample.apk
- [3]: https://github.com/biboune/datetimepicker/tree/master/datetimepicker-sample
- [4]: https://github.com/biboune/datetimepicker/blob/master/datetimepicker-sample/src/com/fourmob/datetimepicker/sample/MainActivity.java
+ [1]: https://raw.githubusercontent.com/jaydeep17/datetimepicker/master/graphics/img1.png
+ [3]: https://github.com/jaydeep17/datetimepicker/tree/master/datetimepicker-sample
+ [4]: https://github.com/jaydeep17/datetimepicker/blob/master/datetimepicker-sample/src/com/fourmob/datetimepicker/sample/MainActivity.java
  [5]: http://nineoldandroids.com/
