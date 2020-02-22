@@ -43,6 +43,7 @@ public class SimpleMonthAdapter extends BaseAdapter implements SimpleMonthView.O
 		return position;
 	}
 
+	@SuppressWarnings("unchecked")
 	public View getView(int position, View convertView, ViewGroup parent) {
 		SimpleMonthView v;
         HashMap<String, Integer> drawingParams = null;
