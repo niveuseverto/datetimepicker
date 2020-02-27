@@ -242,7 +242,7 @@ public class DatePickerDialog extends DialogFragment implements View.OnClickList
 		super.onCreate(bundle);
 		Activity activity = getActivity();
 		activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-		mVibrator = ((Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE));
+		mVibrator = ((Vibrator) activity.getSystemService(Context.VIBRATOR_SERVICE));
 		if (bundle != null) {
 			mCalendar.set(Calendar.YEAR, bundle.getInt(KEY_SELECTED_YEAR));
 			mCalendar.set(Calendar.MONTH, bundle.getInt(KEY_SELECTED_MONTH));
