@@ -38,4 +38,12 @@
     <item name="text_size_multiplier_normal" format="float" type="string">0.17</item>
     <item name="text_size_multiplier_inner" format="float" type="string">0.14</item>
     <item name="text_size_multiplier_outer" format="float" type="string">0.11</item>
+
+    <!-- defaults to prevent build errors -->
+    <dimen name="dialog_height">200dip</dimen>
+    <dimen name="left_side_width">250dip</dimen>
+    <dimen name="footer_height">48dip</dimen>
+    <dimen name="time_label_right_padding">16sp</dimen>
+    <dimen name="month_list_item_size">24sp</dimen>
+    <dimen name="month_list_item_padding">24dp</dimen>
 </resources>

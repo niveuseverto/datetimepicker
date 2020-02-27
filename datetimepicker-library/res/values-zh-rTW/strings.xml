@@ -28,4 +28,15 @@
     <string name="select_year" msgid="2603330600102539372">"選取年份"</string>
     <string name="item_is_selected" msgid="2674929164900463786">"已選取 <xliff:g id="ITEM">%1$s</xliff:g>"</string>
     <string name="deleted_key" msgid="6908431551612331381">"已刪除 <xliff:g id="KEY">%1$s</xliff:g>"</string>
+
+    <item name="circle_radius_multiplier" format="float" type="string">0.82</item>
+    <item name="circle_radius_multiplier_24HourMode" format="float" type="string">0.85</item>
+    <item name="selection_radius_multiplier" format="float" type="string">0.16</item>
+    <item name="ampm_circle_radius_multiplier" format="float" type="string">0.19</item>
+    <item name="numbers_radius_multiplier_normal" format="float" type="string">0.81</item>
+    <item name="numbers_radius_multiplier_inner" format="float" type="string">0.60</item>
+    <item name="numbers_radius_multiplier_outer" format="float" type="string">0.83</item>
+    <item name="text_size_multiplier_normal" format="float" type="string">0.17</item>
+    <item name="text_size_multiplier_inner" format="float" type="string">0.14</item>
+    <item name="text_size_multiplier_outer" format="float" type="string">0.11</item>
 </resources>

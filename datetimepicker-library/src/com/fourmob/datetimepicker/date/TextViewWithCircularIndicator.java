@@ -1,5 +1,6 @@
 package com.fourmob.datetimepicker.date;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
@@ -41,6 +42,7 @@ public class TextViewWithCircularIndicator extends TextView {
 		mDrawCircle = drawIndicator;
 	}
 
+	@SuppressLint("GetContentDescriptionOverride")
 	public CharSequence getContentDescription() {
 		CharSequence text = getText();
 		if (mDrawCircle) {
