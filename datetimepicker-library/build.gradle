@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+group='com.github.BreezeWorks'
 
 repositories {
     mavenCentral()
@@ -37,4 +39,4 @@ tasks.withType(Javadoc) {
     failOnError false
 }
 
-apply from: 'https://raw.github.com/chrisbanes/gradle-mvn-push/master/gradle-mvn-push.gradle'
+
