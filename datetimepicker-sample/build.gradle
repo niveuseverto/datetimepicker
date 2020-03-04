@@ -6,7 +6,7 @@ repositories {
 
 dependencies {
     implementation project(':datetimepicker-library')
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.android.support:support-v4:28.0.0'
 }
 
 android {

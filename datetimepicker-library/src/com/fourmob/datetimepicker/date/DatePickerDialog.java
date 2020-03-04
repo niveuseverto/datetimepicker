@@ -6,7 +6,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.os.Vibrator;
-import androidx.fragment.app.DialogFragment;
+import android.support.v4.app.DialogFragment;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;

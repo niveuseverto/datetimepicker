@@ -16,11 +16,11 @@ package com.sleepbot.datetimepicker.time;
  */
 
 import android.app.ActionBar.LayoutParams;
+import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Build;
-import androidx.fragment.app.DialogFragment;
-import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.text.method.TransformationMethod;
 import android.util.Log;
 import android.view.KeyCharacterMap;
@@ -216,7 +216,7 @@ public class TimePickerDialog extends DialogFragment implements RadialPickerLayo
 
                 @Override
                 public CharSequence getTransformation(CharSequence source, View view) {
-                        return source != null ? source.toString().toUpperCase(locale) : null;
+                    return source != null ? source.toString().toUpperCase(locale) : null;
                 }
 
                 @Override
@@ -372,7 +372,7 @@ public class TimePickerDialog extends DialogFragment implements RadialPickerLayo
             Utils.tryAccessibilityAnnounce(mTimePicker, announcement);
         } else if (pickerIndex == MINUTE_INDEX) {
             setMinute(newValue);
-            if(mCloseOnSingleTapMinute) {
+            if (mCloseOnSingleTapMinute) {
                 onDoneButtonClick();
             }
         } else if (pickerIndex == AMPM_INDEX) {
